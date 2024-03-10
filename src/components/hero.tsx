@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card'
 const Hero = () => {
   return (
     <>
-    <div className=" h-[500px] w-full bg-white flex flex-col-reverse md:flex-row">
+    <div className=" h-[500px] w-full bg-white flex flex-col-reverse md:flex-row md:w-full">
       <div className="h-[500px] w-1/2">
         WE
         <h1><b>Run your Payroll 10X faster, Pay Employees On Time,  Always.</b></h1>
@@ -26,7 +26,7 @@ No matter the size of your business, Workpay is the solution for you.
      
     </div>
     
-    <div className=" flex flex-col-reverse md:flex-row gap-5">
+    <div className=" flex flex-col w-full md:flex-row md:w-[96%] gap-5">
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>1</CardTitle>
