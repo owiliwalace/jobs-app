@@ -7,13 +7,14 @@ const Hero = () => {
   return (
     <>
     <div className=" h-[500px] w-full bg-white flex flex-col-reverse md:flex-row md:w-full">
-      <div className="h-[500px] w-1/2">
-        WE
-        <h1><b>Run your Payroll 10X faster, Pay Employees On Time,  Always.</b></h1>
-Leave manual payroll management in the past. Embrace an easy to use, automatic, 
+      <div className="h-[500px] w-full md:w-full">
+        
+        <h2 className='md:w-[700px] mt-4 text-4xl'><b>Run your Payroll 10X faster, Pay Employees On Time,  Always.</b></h2>
+<div className='md:w-[600px] w-full text-2xl'>Leave manual payroll management in the past. Embrace an easy to use, automatic, 
 and fully integrated system for your processes. Enjoy accurate and timely payrolls, 
 and remit all statutory payments easily and on time. 
 No matter the size of your business, Workpay is the solution for you. 
+      </div>
       </div>
     <Image
     className=' w-1/2'
