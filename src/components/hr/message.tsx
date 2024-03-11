@@ -8,10 +8,10 @@ async function addDataToFirestore(name, message) {
       name: name,
       message: message,
     });
-    console.log("Document written with ID: ", docRef.id);
+    console.log("Document written with ID:", docRef.id);
     return true;
   } catch (error) {
-    console.error("Error adding document ", error);
+    console.error("Error adding document:", error);
     return false;
   }
 }
@@ -46,64 +46,54 @@ const Message = () => {
   };
 
   return (
-    <>
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg w-[500px]"
-      >
-        Send a Message
-        <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Username:
-          </label>
-          <select
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg w-[500px]"
+    >
+      <h2 className="text-2xl font-bold mb-4">Send a Message</h2>
+      <div className="mb-4">
+        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+          Username:
+        </label>
+        <select
           required
-
-            id="name"
-            className="w-full px-3 border rounded-lg focus:outline-none focus:border-blue-500"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          >
-            <option value="" disabled>
-              send to
+          id="name"
+          className="w-full px-3 border rounded-lg focus:outline-none focus:border-blue-500"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        >
+          <option value="" disabled>
+            Select a recipient
+          </option>
+          {employeeNames.map((employeeName, index) => (
+            <option key={index} value={employeeName}>
+              {employeeName}
             </option>
-            {employeeNames.map((employeeName, index) => (
-              <option key={index} value={employeeName} >
-                {employeeName}
-              </option>
-            ))}
-          </select>
-        </div>
+          ))}
+        </select>
+      </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="message"
-            className="block text-gray-700 font-bold mb-2"
-          >
-            Message:
-          </label>
-          <textarea
-            rows={5}
-            id="message"
-            className="w-full px-3 border rounded-lg focus:outline-none focus:border-blue-500"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-        </div>
-        <div className="text-center">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-600
-                       text-white font-bold py-2 px-4 rounded-lg"
-          >
-            Send
-          </button>
-        </div>
-      </form>
-    </>
+      <div className="mb-4">
+        <label htmlFor="message" className="block text-gray-700 font-bold mb-2">
+          Message:
+        </label>
+        <textarea
+          rows={5}
+          id="message"
+          className="w-full px-3 border rounded-lg focus:outline-none focus:border-blue-500"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        ></textarea>
+      </div>
+      <div className="text-center">
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg"
+        >
+          Send
+        </button>
+      </div>
+    </form>
   );
 };
 
