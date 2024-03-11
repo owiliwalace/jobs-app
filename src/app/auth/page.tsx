@@ -30,7 +30,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-async function addDataToFirestore(name, username, email, phoneNumber, expertise) {
+async function addDataToFirestore(
+  name: string,
+  username: string,
+  email: string,
+  phoneNumber: string,
+  expertise: string
+): Promise<boolean> {
   try {
     const docRef = await addDoc(collection(db, "register"), {
       name: name,
@@ -46,6 +52,7 @@ async function addDataToFirestore(name, username, email, phoneNumber, expertise)
     return false;
   }
 }
+
 
 function Auth() {
   const [name, setName] = useState("");
@@ -130,14 +137,12 @@ function Auth() {
                 </div>
 
                 <Select
-                 onChange={(e) => setExpertise(e.target.value)}
-                 value={expertise}>
+               >
                   <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Select your area of expertise" />
                   </SelectTrigger>
                   <SelectContent
-                  onChange={(e) => setExpertise(e.target.value)}
-                  value={expertise}>
+            >
                     <SelectGroup>
                       <SelectLabel>Jobs</SelectLabel>
                       <SelectItem value="intern">Intern</SelectItem>
