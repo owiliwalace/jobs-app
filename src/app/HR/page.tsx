@@ -34,17 +34,22 @@ import TotalEmployees from "@/components/totalEmployees";
 import TotalHours from "@/components/totalHours";
 import AddEmployee from "@/components/addEmployee";
 import Registrations from "@/components/registrations";
+
+interface Employee {
+  id: string;
+  name: string;
+  category: string;
+  // Add other properties if needed
+}
  
 async function fetchDataFromFirestore() {
   const querySnapshot = await getDocs(collection(db,"employees"))
   
-  const data=[];
+  const data: Employee[] = [];
   querySnapshot.forEach((doc) => {
-    data.push({id:doc.id, ...doc.data()});
-
+    data.push({ id: doc.id, ...doc.data() } as Employee);
   });
   return data;
-  
 }
   
   const TableDemo =() => {
