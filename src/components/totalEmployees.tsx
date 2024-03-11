@@ -1,3 +1,4 @@
+// TotalEmployees.js
 import React, { useState, useEffect } from 'react';
 import {
   Card,
@@ -5,23 +6,28 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { collection, getDocs } from "firebase/firestore"
-import {db}from "../app/firebaseConfig"
-async function fetchDataFromFirestore() {
-    const querySnapshot = await getDocs(collection(db,"employees"))
-    
-    const data=[];
-    querySnapshot.forEach((doc) => {
-      data.push({id:doc.id, ...doc.data()});
-  
-    });
-    return data;
-    
-  } // Make sure to provide the correct path
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../app/firebaseConfig";
+
+// Define the type for employee data
+interface Employee {
+  id: string;
+  // Add other properties if needed
+}
+
+async function fetchDataFromFirestore(): Promise<Employee[]> {
+  const querySnapshot = await getDocs(collection(db, "employees"));
+
+  const data: Employee[] = [];
+  querySnapshot.forEach((doc) => {
+    data.push({ id: doc.id, ...doc.data() } as Employee);
+  });
+
+  return data;
+}
 
 const TotalEmployees = () => {
-  const [totalEmployees, setTotalEmployees] = useState(null);
+  const [totalEmployees, setTotalEmployees] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchEmployeeData = async () => {
@@ -45,7 +51,7 @@ const TotalEmployees = () => {
         <CardContent>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
-              
+              {/* Display the total number of employees */}
               <p>{totalEmployees !== null ? totalEmployees : "Loading..."}</p>
             </div>
           </div>
