@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent } from './ui/card'
 const Hero = () => {
   return (
     <>
-    <div className=" h-[500px] w-full bg-white flex flex-col-reverse md:flex-row md:w-full">
+    <div className=" h-[500px] w-full bg-white flex flex-col-reverse mt-40 md:mt-6 md:flex-row md:w-full">
       <div className="h-[500px] w-full md:w-full">
         
         <h2 className='md:w-[700px] mt-4 text-4xl'><b>Run your Payroll 10X faster, Pay Employees On Time,  Always.</b></h2>
@@ -19,8 +19,8 @@ No matter the size of your business, Workpay is the solution for you.
     <Image
     className=' w-1/2'
       src="/hero-homepage.jpg"
-      width={400}
-      height={400}
+      width={500}
+      height={500}
       alt="image one"
     />
    
