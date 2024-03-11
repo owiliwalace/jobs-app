@@ -52,17 +52,17 @@ async function fetchDataFromFirestore() {
   return data;
 }
   
-  const TableDemo =() => {
-    const [userData, setUserData]=useState([]);
-    useEffect(() => {
-      async function fetchData() {
-        const data =await fetchDataFromFirestore();
-        setUserData(data);
-        
-      }
-      fetchData();
-    },[]);
+const TableDemo = () => {
+  const [userData, setUserData] = useState<Employee[]>([]); // Provide the type here
 
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchDataFromFirestore();
+      setUserData(data);
+    }
+
+    fetchData();
+  }, []);
     return (
     <>
     <Header />
