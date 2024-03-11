@@ -1,58 +1,46 @@
 "use client"
-import React, { useState } from 'react';
+import {db}from "../firebaseConfig"
+import { collection, getDocs } from "firebase/firestore"
 
-const LikeDislikeComponent = () => {
-  const [likes, setLikes] = useState(100);
-  const [dislikes, setDislikes] = useState(25);
-  const [liked, setLiked] = useState(false);
-  const [disliked, setDisliked] = useState(false);
+import React,{useState, useEffect} from 'react';
 
-  const handleLikeClick = () => {
-    if (!liked && !disliked) {
-      setLikes(likes + 1);
-      setLiked(true);
-    } else if (liked && !disliked) {
-      setLikes(likes - 1);
-      setLiked(false);
-    } else if (!liked && disliked) {
-      setLikes(likes + 1);
-      setLiked(true);
-      setDislikes(dislikes - 1);
-      setDisliked(false);
+async function fetchDataFromFirestore() {
+  const querySnapshot = await getDocs(collection(db,"messages"))
+  
+  const data=[];
+  querySnapshot.forEach((doc) => {
+    data.push({id:doc.id, ...doc.data()});
+
+  });
+  return data;
+  
+}
+
+const About = () => {
+  const [userData, setUserData]=useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const data =await fetchDataFromFirestore();
+      setUserData(data);
+      
     }
-  };
-
-  const handleDislikeClick = () => {
-    if (!liked && !disliked) {
-      setDislikes(dislikes + 1);
-      setDisliked(true);
-    } else if (!liked && disliked) {
-      setDislikes(dislikes - 1);
-      setDisliked(false);
-    } else if (liked && !disliked) {
-      setDislikes(dislikes + 1);
-      setDisliked(true);
-      setLikes(likes - 1);
-      setLiked(false);
-    }
-  };
-
+    fetchData();
+  },[]);
   return (
-    <div>
-      <button
-        style={{ backgroundColor: liked ? 'lightblue' : 'initial' }}
-        onClick={handleLikeClick}
-      >
-        Like | <span>{likes}</span>
-      </button>
-      <button
-        style={{ backgroundColor: disliked ? 'lightcoral' : 'initial' }}
-        onClick={handleDislikeClick}
-      >
-        Dislike | <span>{dislikes}</span>
-      </button>
+    <>
+    
+    <div className="">
+      {userData.map((user) => (
+        <div key={user.id} className="mb-4">
+          <p className="text-xl font-semibold">{user.name}</p>
+          <p className="text-xl font-semibold">{user.email}</p>
+          <p className="text-xl font-semibold">{user.message}</p>
+        </div>
+      ))}
     </div>
-  );
-};
 
-export default LikeDislikeComponent;
+    </>
+  )
+}
+
+export default About

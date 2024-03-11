@@ -1,6 +1,13 @@
 
 "use client"
 
+import {db}from "../firebaseConfig"
+import { collection, getDocs } from "firebase/firestore"
+
+import React,{useState, useEffect} from 'react';
+
+
+
   import Header from "@/components/header"
 
 import {
@@ -11,19 +18,9 @@ import {
 } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 
- 
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
 import {
   Table,
+  TableBody,
   TableCaption,
   TableCell,
   TableFooter,
@@ -31,64 +28,79 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import Message from "@/components/hr/message"
+import FetchMessage from "@/components/fetchMessage"
+import TotalEmployees from "@/components/totalEmployees";
+import TotalHours from "@/components/totalHours";
+import AddEmployee from "@/components/addEmployee";
+import Registrations from "@/components/registrations";
  
+async function fetchDataFromFirestore() {
+  const querySnapshot = await getDocs(collection(db,"employees"))
+  
+  const data=[];
+  querySnapshot.forEach((doc) => {
+    data.push({id:doc.id, ...doc.data()});
 
+  });
+  return data;
+  
+}
   
   const TableDemo =() => {
+    const [userData, setUserData]=useState([]);
+    useEffect(() => {
+      async function fetchData() {
+        const data =await fetchDataFromFirestore();
+        setUserData(data);
+        
+      }
+      fetchData();
+    },[]);
+
     return (
     <>
     <Header />
       <Card className=" ">
     <div className="flex gap-5">
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Total employees</CardTitle>
-      </CardHeader>
-      <CardContent> 
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label> 
-            </div>
-          </div>
-      </CardContent>
-    </Card>
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Total Hours</CardTitle>
-      </CardHeader>
-      <CardContent> 
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label> 
-            </div>
-          </div>
-      </CardContent>
-    </Card>
+  <TotalEmployees/>
+  <TotalHours />
+  <AddEmployee />
+  <Registrations />
+   
     </div>
 
     <div className="flex">
 
    
-   <div className="">Dashboard</div>
+   <Message />
     
       <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableCaption>A list of your employees.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[500px]">Employee Name</TableHead>
+            <TableHead className="text-right">Category</TableHead>
           </TableRow>
         </TableHeader>
+        <TableBody>
+        {userData.map((user) => (
+          <TableRow key={user.id}>
+            <TableCell className="font-medium ">{user.name}</TableCell>
+            <TableCell className="text-right">{user.category}</TableCell>
+            
+          </TableRow>
+        ))}
+      </TableBody>
        
         <TableFooter>
           <TableRow>
             <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
+            
           </TableRow>
         </TableFooter>
       </Table>
+          <FetchMessage />
       </div>
       </Card>
       </>
