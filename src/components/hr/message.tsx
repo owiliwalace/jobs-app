@@ -24,7 +24,7 @@ const Message = () => {
   useEffect(() => {
     const fetchEmployeeNames = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "employees"));
+        const querySnapshot = await getDocs(collection(db, "users"));
         const names = querySnapshot.docs.map((doc) => doc.data().name);
         setEmployeeNames(names);
       } catch (error) {
@@ -41,7 +41,7 @@ const Message = () => {
     if (added) {
       setName("");
       setMessage("");
-      alert("Data added to Firestore DB!!");
+      alert("Message sent!!");
     }
   };
 

@@ -1,9 +1,8 @@
-// TotalEmployees.js
+// components/TotalEmployees.tsx
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../app/firebaseConfig";
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 // Define the type for registration data
@@ -25,7 +24,6 @@ async function fetchDataFromFirestore(): Promise<Registration[]> {
 
 const TotalEmployees = () => {
   const [totalEmployees, setTotalEmployees] = useState<number | null>(null);
-  const router = useRouter();
 
   useEffect(() => {
     const fetchEmployeeData = async () => {
@@ -43,7 +41,7 @@ const TotalEmployees = () => {
   return (
     <>
       <Link href="/new">
-        <a>
+        
           <Card className="w-[350px] cursor-pointer">
             <CardHeader>
               <CardTitle>Registrations</CardTitle>
@@ -57,7 +55,7 @@ const TotalEmployees = () => {
               </div>
             </CardContent>
           </Card>
-        </a>
+       
       </Link>
     </>
   );

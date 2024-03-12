@@ -37,9 +37,9 @@ const FetchMessage = () => {
           <div className="font-bold">Sent Messages</div>
           {userData.map((user) => (
             <div key={user.id} className="mb-4 shadow-sm py-2 px-4">
-              <p className="text-xl font-light">{user.name}</p>
-              <p className="text-xl font-light">{user.email}</p>
-              <p className="text-xl font-light">{user.message}</p>
+              <p className=" text-md font-light"><span className="font-semibold">Sent to: </span>{user.name}</p>
+              <p className="text-md font-light">{user.email}</p>
+              <p className="text-md font-light"><span className="font-semibold">Message: </span>{user.message}</p>
             </div>
           ))}
         </div>

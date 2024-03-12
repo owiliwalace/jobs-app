@@ -43,7 +43,7 @@ interface Employee {
 }
  
 async function fetchDataFromFirestore() {
-  const querySnapshot = await getDocs(collection(db,"employees"))
+  const querySnapshot = await getDocs(collection(db,"users"))
   
   const data: Employee[] = [];
   querySnapshot.forEach((doc) => {
@@ -70,7 +70,7 @@ const TableDemo = () => {
     <div className="flex gap-5">
   <TotalEmployees/>
   <TotalHours />
-  <AddEmployee />
+
   <Registrations />
    
     </div>

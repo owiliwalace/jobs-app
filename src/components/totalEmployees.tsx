@@ -16,7 +16,7 @@ interface Employee {
 }
 
 async function fetchDataFromFirestore(): Promise<Employee[]> {
-  const querySnapshot = await getDocs(collection(db, "employees"));
+  const querySnapshot = await getDocs(collection(db, "users"));
 
   const data: Employee[] = [];
   querySnapshot.forEach((doc) => {
