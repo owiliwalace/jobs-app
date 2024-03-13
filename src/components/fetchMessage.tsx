@@ -8,6 +8,8 @@ interface Message {
   name: string;
   email: string;
   message: string;
+  startDate:string;
+  endDate:string;
   // Add other properties if needed
 }
 
@@ -39,6 +41,11 @@ const FetchMessage = () => {
             <div key={user.id} className="mb-4 shadow-sm py-2 px-4">
               <p className=" text-md font-light"><span className="font-semibold">Sent to: </span>{user.name}</p>
               <p className="text-md font-light">{user.email}</p>
+              <div className="">
+
+              <p className="text-sm font-light"><span className="font-semibold">Start:</span>{user.startDate}</p>
+              <p className="text-sm font-light"><span className="font-semibold">End:</span>{user.endDate}</p>
+              </div>
               <p className="text-md font-light"><span className="font-semibold">Message: </span>{user.message}</p>
             </div>
           ))}
