@@ -87,7 +87,7 @@ const NavigationMenuDemo =() =>{
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem className=" ">
-          <Link href="/dashboard" legacyBehavior passHref className=" ">
+          <Link href="/auth" legacyBehavior passHref className=" ">
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
             GET STARTED
             </NavigationMenuLink>
