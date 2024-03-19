@@ -1,7 +1,7 @@
 
 "use client"
 import React, { useState, useEffect } from "react";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+//import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { getAuth, signInWithPhoneNumber, RecaptchaVerifier, GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Router from "next/router";
 import firebaseApp from "../../app/firebaseConfig"; // Import initialized Firebase app
@@ -105,9 +105,9 @@ function SignInScreen() {
         </button>
       </div>
       <div style={{ maxWidth: "320px" }}>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       </div>
     </>
+        //<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
   );
 }
 
