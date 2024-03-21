@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    Card,
+    Card,             
     CardContent,
     CardHeader,
     CardTitle,
@@ -9,7 +9,7 @@ import {
   
 const AddEmployee = () => {
   return (
-    <>
+    <>         
      <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>Add Employee</CardTitle>
@@ -22,7 +22,7 @@ const AddEmployee = () => {
           </div>
       </CardContent>
     </Card>
-    </>
+    </>      
   )
 }
 
